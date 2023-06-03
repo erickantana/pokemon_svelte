@@ -32,6 +32,9 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"firebase": "^9.22.1"
+		"@kitql/all-in": "^0.9.5",
+		"firebase": "^9.22.1",
+		"graphql": "^15.8.0",
+		"houdini": "^1.2.5"
 	}
 }
