@@ -1,11 +1,16 @@
 import type { Pokemon } from '../../../../core/entities/pokemon';
+import type { IPokemonDataSource } from '../interface/pokemon_data_source';
 import type { IPokemonRepository } from '../interface/pokemon_repository';
+import { PokemonGraphQLDataSource } from './pokemon_graphql_data_source';
 
-export class PokemoRepository implements IPokemonRepository {
-	get(): Promise<Pokemon[]> {
-		throw new Error('Method not implemented.');
+export class PokemonRepository implements IPokemonRepository {
+	dataSource: IPokemonDataSource = new PokemonGraphQLDataSource();
+
+	async get(): Promise<Pokemon[]> {
+		return await this.dataSource.get();
 	}
-	findById(id: string): Promise<Pokemon | null> {
-		throw new Error('Method not implemented.');
+
+	async findById(id: string): Promise<Pokemon | null> {
+		return await this.dataSource.findById(id);
 	}
 }

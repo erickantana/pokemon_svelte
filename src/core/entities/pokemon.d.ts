@@ -1,3 +1,5 @@
 export type Pokemon = {
-	name: string;
+	name?: string | undefined;
+	image?: string | undefined;
+	url?: string | undefined;
 };
