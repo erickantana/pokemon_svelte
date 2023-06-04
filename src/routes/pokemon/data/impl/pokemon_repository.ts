@@ -4,7 +4,11 @@ import type { IPokemonRepository } from '../interface/pokemon_repository';
 import { PokemonGraphQLDataSource } from './pokemon_graphql_data_source';
 
 export class PokemonRepository implements IPokemonRepository {
-	dataSource: IPokemonDataSource = new PokemonGraphQLDataSource();
+	private _dataSource: IPokemonDataSource;
+
+	constructor() {
+		this._dataSource = new PokemonGraphQLDataSource();
+	}
 
 	async get({
 		limit,
@@ -13,10 +17,10 @@ export class PokemonRepository implements IPokemonRepository {
 		limit?: number | undefined;
 		offset?: number | undefined;
 	}): Promise<Pokemon[]> {
-		return await this.dataSource.get({ limit, offset });
+		return await this._dataSource.get({ limit, offset });
 	}
 
 	async findById(id: string): Promise<Pokemon | null> {
-		return await this.dataSource.findById(id);
+		return await this._dataSource.findById(id);
 	}
 }

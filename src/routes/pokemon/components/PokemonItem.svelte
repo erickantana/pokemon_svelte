@@ -14,7 +14,6 @@
 
         const repository: IPokemonRepository = new PokemonRepository();
         types = (await repository.findById(pokemon.name))?.types;
-        console.log(types)
     });
 </script>
 
