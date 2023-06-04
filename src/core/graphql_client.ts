@@ -1,6 +1,6 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloClient, InMemoryCache } from '@apollo/client/core';
 
-export const client = new ApolloClient({
+export default new ApolloClient({
 	uri: 'https://graphql-pokeapi.vercel.app/api/graphql',
 	cache: new InMemoryCache()
 });

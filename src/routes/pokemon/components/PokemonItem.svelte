@@ -1,0 +1,33 @@
+<script lang="ts">
+	import type { Pokemon } from "../../../core/entities/pokemon";
+	import type { IPokemonRepository } from "../data/interface/pokemon_repository";
+	import { PokemonRepository } from "../data/impl/pokemon_repository";
+	import type { Type } from "../../../core/entities/type";
+	import { onMount } from "svelte";
+
+    export let pokemon: Pokemon | undefined;
+
+    let types: (Type | null)[] | null | undefined;
+
+    onMount(async () => {
+        if (!pokemon?.name) return;
+
+        const repository: IPokemonRepository = new PokemonRepository();
+        types = (await repository.findById(pokemon.name))?.types;
+        console.log(types)
+    });
+</script>
+
+<button on:click>
+    {#if pokemon}
+        <div>{pokemon.name}</div>
+        <img src={pokemon.image} alt={pokemon.name}>
+        {#each types ?? [] as type}
+            {#if type}
+                {type.type?.name}
+            {/if}
+        {/each}
+    {:else}
+        <div>Unknown Pokemon</div>
+    {/if}
+</button>

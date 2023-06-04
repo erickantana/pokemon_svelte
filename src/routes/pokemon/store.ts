@@ -10,7 +10,7 @@ function createPokemons() {
 	return {
 		subscribe,
 		load: async () => {
-			set(await repository.get());
+			set(await repository.get({ limit: 20, offset: 0 }));
 		}
 	};
 }
