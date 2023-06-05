@@ -1,9 +1,10 @@
 <script lang="ts">
 	import type { Pokemon } from "../../../core/entities/pokemon";
 	import type { IPokemonRepository } from "../data/interface/pokemon_repository";
-	import { PokemonRepository } from "../data/impl/pokemon_repository";
 	import type { Type } from "../../../core/entities/type";
 	import { onMount } from "svelte";
+	import container from "../../../core/container";
+	import TYPES from "../../../core/container/types";
 
     export let pokemon: Pokemon | undefined;
 
@@ -12,7 +13,7 @@
     onMount(async () => {
         if (!pokemon?.name) return;
 
-        const repository: IPokemonRepository = new PokemonRepository();
+        const repository: IPokemonRepository = container.get<IPokemonRepository>(TYPES.PokemonRepository);
         types = (await repository.findById(pokemon.name))?.types;
     });
 </script>

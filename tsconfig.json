@@ -8,7 +8,11 @@
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
-		"strict": true
+		"strict": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+		"lib": ["es6", "dom"],
+        "types": ["reflect-metadata"]
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//

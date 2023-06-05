@@ -1,13 +1,15 @@
+import { inject, injectable } from 'inversify';
 import type { Pokemon } from '../../../../core/entities/pokemon';
 import type { IPokemonDataSource } from '../interface/pokemon_data_source';
 import type { IPokemonRepository } from '../interface/pokemon_repository';
-import { PokemonGraphQLDataSource } from './pokemon_graphql_data_source';
+import TYPES from '../../../../core/container/types';
 
+@injectable()
 export class PokemonRepository implements IPokemonRepository {
 	private _dataSource: IPokemonDataSource;
 
-	constructor() {
-		this._dataSource = new PokemonGraphQLDataSource();
+	constructor(@inject(TYPES.PokemonDataSource) dataSource: IPokemonDataSource) {
+		this._dataSource = dataSource;
 	}
 
 	async get({

@@ -1,8 +1,10 @@
 import { writable } from 'svelte/store';
 import type { Pokemon } from '../../core/entities/pokemon';
-import { PokemonRepository } from './data/impl/pokemon_repository';
+import container from '../../core/container';
+import type { IPokemonRepository } from './data/interface/pokemon_repository';
+import TYPES from '../../core/container/types';
 
-const repository = new PokemonRepository();
+const repository = container.get<IPokemonRepository>(TYPES.PokemonRepository);
 
 function createPokemons() {
 	const { subscribe, set } = writable<Pokemon[]>([]);

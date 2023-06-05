@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { PokemonRepository } from '../data/impl/pokemon_repository.js';
-	import type { Pokemon } from '../../../core/entities/pokemon.js';
+	import type { Pokemon } from '../../../core/entities/pokemon';
+	import container from '../../../core/container/index';
+	import TYPES from '../../../core/container/types';
+	import type { IPokemonRepository } from '../data/interface/pokemon_repository';
 
     export let data;
 
     let pokemon: Pokemon | null;
 
     onMount(async () => {
-        const repository = new PokemonRepository();
+        const repository = container.get<IPokemonRepository>(TYPES.PokemonRepository);
         pokemon = await repository.findById(data.name);
     })
 </script>

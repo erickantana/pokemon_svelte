@@ -1,7 +1,9 @@
 import { Asyncpokemon, Asyncpokemons } from '../../../../graphql/generated';
 import type { Pokemon } from '../../../../core/entities/pokemon';
 import type { IPokemonDataSource } from '../interface/pokemon_data_source';
+import { injectable } from 'inversify';
 
+@injectable()
 export class PokemonGraphQLDataSource implements IPokemonDataSource {
 	async get({
 		limit,
