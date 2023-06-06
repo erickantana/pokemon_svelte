@@ -6,6 +6,7 @@ query pokemons($limit: Int, $offset: Int) {
 		status
 		message
 		results {
+			id
 			url
 			name
 			image
@@ -18,7 +19,14 @@ query pokemon($name: String!) {
 		id
 		name
 		sprites {
+			back_default
+			back_female
+			back_shiny
+			back_shiny_female
 			front_default
+			front_female
+			front_shiny
+			front_shiny_female
 		}
 		moves {
 			move {
@@ -31,6 +39,11 @@ query pokemon($name: String!) {
 				name
 				url
 			}
+		}
+		weight
+		height
+		species {
+			url
 		}
 	}
 }

@@ -272,14 +272,14 @@ export type PokemonsQueryVariables = Exact<{
 }>;
 
 
-export type PokemonsQuery = { __typename?: 'Query', pokemons?: { __typename?: 'PokemonList', count?: number | null, next?: string | null, previous?: string | null, status?: boolean | null, message?: string | null, results?: Array<{ __typename?: 'PokemonItem', url?: string | null, name?: string | null, image?: string | null } | null> | null } | null };
+export type PokemonsQuery = { __typename?: 'Query', pokemons?: { __typename?: 'PokemonList', count?: number | null, next?: string | null, previous?: string | null, status?: boolean | null, message?: string | null, results?: Array<{ __typename?: 'PokemonItem', id?: number | null, url?: string | null, name?: string | null, image?: string | null } | null> | null } | null };
 
 export type PokemonQueryVariables = Exact<{
   name: Scalars['String']['input'];
 }>;
 
 
-export type PokemonQuery = { __typename?: 'Query', pokemon?: { __typename?: 'Pokemon', id?: number | null, name?: string | null, sprites?: { __typename?: 'Sprite', front_default?: string | null } | null, moves?: Array<{ __typename?: 'Move', move?: { __typename?: 'BaseName', name?: string | null } | null } | null> | null, types?: Array<{ __typename?: 'Type', type?: { __typename?: 'BaseName', id?: number | null, name?: string | null, url?: string | null } | null } | null> | null } | null };
+export type PokemonQuery = { __typename?: 'Query', pokemon?: { __typename?: 'Pokemon', id?: number | null, name?: string | null, weight?: number | null, height?: number | null, sprites?: { __typename?: 'Sprite', back_default?: string | null, back_female?: string | null, back_shiny?: string | null, back_shiny_female?: string | null, front_default?: string | null, front_female?: string | null, front_shiny?: string | null, front_shiny_female?: string | null } | null, moves?: Array<{ __typename?: 'Move', move?: { __typename?: 'BaseName', name?: string | null } | null } | null> | null, types?: Array<{ __typename?: 'Type', type?: { __typename?: 'BaseName', id?: number | null, name?: string | null, url?: string | null } | null } | null> | null, species?: { __typename?: 'BaseName', url?: string | null } | null } | null };
 
 
 export const PokemonsDoc = gql`
@@ -291,6 +291,7 @@ export const PokemonsDoc = gql`
     status
     message
     results {
+      id
       url
       name
       image
@@ -304,7 +305,14 @@ export const PokemonDoc = gql`
     id
     name
     sprites {
+      back_default
+      back_female
+      back_shiny
+      back_shiny_female
       front_default
+      front_female
+      front_shiny
+      front_shiny_female
     }
     moves {
       move {
@@ -317,6 +325,11 @@ export const PokemonDoc = gql`
         name
         url
       }
+    }
+    weight
+    height
+    species {
+      url
     }
   }
 }
