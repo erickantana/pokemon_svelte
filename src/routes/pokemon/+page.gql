@@ -1,0 +1,49 @@
+query pokemons($limit: Int, $offset: Int) {
+	pokemons(limit: $limit, offset: $offset) {
+		count
+		next
+		previous
+		status
+		message
+		results {
+			id
+			url
+			name
+			image
+		}
+	}
+}
+
+query pokemon($name: String!) {
+	pokemon(name: $name) {
+		id
+		name
+		sprites {
+			back_default
+			back_female
+			back_shiny
+			back_shiny_female
+			front_default
+			front_female
+			front_shiny
+			front_shiny_female
+		}
+		moves {
+			move {
+				name
+			}
+		}
+		types {
+			type {
+				id
+				name
+				url
+			}
+		}
+		weight
+		height
+		species {
+			url
+		}
+	}
+}
