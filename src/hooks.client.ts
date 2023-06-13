@@ -1,20 +1,10 @@
-import {
-	FieldValue,
-	collection,
-	doc,
-	getDoc,
-	increment,
-	runTransaction,
-	setDoc,
-	updateDoc
-} from 'firebase/firestore';
+import { runTransaction } from 'firebase/firestore';
 import container from './core/container';
 import TYPES from './core/container/types';
 import type { IPokeService } from './core/services/poke_service';
 import type { ITimeService } from './core/services/time_service';
 import { auth, db } from './firebase';
 import { PokeBallType } from './core/enums/poke_ball_type';
-import type { User } from './core/entities/user';
 import type { IUserRepository } from './core/repositories/user_repository';
 import { NumberModifier } from './core/data_source/number_modifier';
 

@@ -1,7 +1,4 @@
-import type { EvolutionChain } from '../entities/evolution_chain';
 import type { EvolutionStage, PokemonCollection } from '../entities/pokemon_collection';
-import type { Sprite } from '../entities/sprite';
-import type { Type } from '../entities/type';
 import type { NumberModify } from './number_modify';
 
 export type UpdatePokemonCollection = {

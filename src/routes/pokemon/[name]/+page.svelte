@@ -13,7 +13,6 @@
 	import type { IPokemonCollectionRepository } from '../../../core/repositories/pokemon_collection_repository';
 	import { NumberModifier } from '../../../core/data_source/number_modifier';
 	import _ from 'lodash';
-	import type { EvolutionStage } from '../../../core/entities/pokemon_collection';
 
 	export let data;
 

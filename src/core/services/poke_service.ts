@@ -1,4 +1,3 @@
-import type { Pokemon } from '../entities/pokemon';
 import type { PokeBallType } from '../enums/poke_ball_type';
 
 export interface IPokeService {

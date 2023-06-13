@@ -6,8 +6,6 @@ import {
 	QueryDocumentSnapshot,
 	setDoc,
 	updateDoc,
-	FieldValue,
-	increment,
 	Transaction
 } from 'firebase/firestore';
 import type { IUserDataSource, UpdateUser } from './user_data_source';
@@ -15,8 +13,7 @@ import type { PokeBallType } from '../enums/poke_ball_type';
 import type { User } from '../entities/user';
 import { inject, injectable } from 'inversify';
 import TYPES from '../container/types';
-import { isNumberModify, numberModifyToFieldValue, type NumberModify } from './number_modify';
-import { NumberModifier } from './number_modifier';
+import { isNumberModify, numberModifyToFieldValue } from './number_modify';
 
 const userConverter = {
 	toFirestore: (data: User) => data,

@@ -15,9 +15,6 @@ import {
 	setDoc,
 	updateDoc
 } from 'firebase/firestore';
-import type { Type } from '../entities/type';
-import type { Sprite } from '../entities/sprite';
-import type { EvolutionChain } from '../entities/evolution_chain';
 import { isNumberModify, numberModifyToFieldValue } from './number_modify';
 
 const pokemonCollectionConverter = {
