@@ -26,6 +26,12 @@ import type { IPokemonCollectionDataSource } from '../data_source/pokemon_collec
 import { PokemonFirestoreDataSource } from '../data_source/pokemon_firestore_data_source';
 import type { IPokemonCollectionRepository } from '../repositories/pokemon_collection_repository';
 import { PokemonCollectionRepositoryImpl } from '../repositories/pokemon_collection_repository_impl';
+import type { UseCase } from '../domain/use_case';
+import { CatchPokemonUseCase, type CatchPokemonParam } from '../domain/catch_pokemon_use_case';
+import {
+	GeneratePokeBallUseCase,
+	type GeneratePokeBallParam
+} from '../domain/generate_pokeball_use_case';
 
 const container = new Container();
 
@@ -91,5 +97,10 @@ container
 container
 	.bind<IPokemonCollectionRepository>(TYPES.PokemonCollectionRepository)
 	.to(PokemonCollectionRepositoryImpl);
+
+container.bind<UseCase<CatchPokemonParam, void>>(TYPES.CatchPokemonUseCase).to(CatchPokemonUseCase);
+container
+	.bind<UseCase<GeneratePokeBallParam, Date | null>>(TYPES.GeneratePokeBallUseCase)
+	.to(GeneratePokeBallUseCase);
 
 export default container;

@@ -5,7 +5,7 @@ export type EvolutionStage = {
 
 export type PokemonCollection = {
 	name: string;
-	evolutionStages: EvolutionStage[];
+	evolutionStages: EvolutionStage[]; // Represents pokemon evolution stage, its current stage will be the last element of this array
 	obtainedAt: Date;
 	level: number;
 };

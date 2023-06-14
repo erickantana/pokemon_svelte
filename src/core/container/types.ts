@@ -9,7 +9,9 @@ const TYPES = {
 	UserDataSource: Symbol('UserDataSource'),
 	Firestore: Symbol('Firestore'),
 	PokemonCollectionDataSource: Symbol('PokemonCollectionDataSource'),
-	PokemonCollectionRepository: Symbol('PokemonCollectionRepository')
+	PokemonCollectionRepository: Symbol('PokemonCollectionRepository'),
+	CatchPokemonUseCase: Symbol('CatchPokemonUseCase'),
+	GeneratePokeBallUseCase: Symbol('GeneratePokeBallUseCase')
 };
 
 export default TYPES;

@@ -1,9 +1,49 @@
 <script lang="ts">
 	import '../app.css';
+
+	import container from '../core/container';
+	import TYPES from '../core/container/types';
+	import { auth } from '../firebase';
+	import type { UseCase } from '../core/domain/use_case';
+	import type { GeneratePokeBallParam } from '../core/domain/generate_pokeball_use_case';
+
+	let lastSpawnedPokeBall: Date | null = null;
+
+	const useCase = container.get<UseCase<GeneratePokeBallParam, Date>>(
+		TYPES.GeneratePokeBallUseCase
+	);
+
+	let nextPokeBallIn: string | null = null;
+
+	auth.onAuthStateChanged(async (auth) => {
+		lastSpawnedPokeBall = auth != null ? await useCase.call({ uid: auth.uid }) : null;
+	});
+
+	setInterval(timer, 1000);
+
+	function timer() {
+		if (lastSpawnedPokeBall == null) return;
+
+		let startTime = lastSpawnedPokeBall.getTime();
+		let endTime = new Date().getTime();
+
+		const seconds = Math.max(60 * 5 - Math.floor((endTime - startTime) / 1000), 0);
+
+		nextPokeBallIn = `${Math.floor(seconds / 60)} : ${seconds % 60}`;
+
+		const uid = auth.currentUser?.uid;
+		if (seconds == 0 && uid) {
+			useCase.call({ uid }).then((value) => {
+				if (value != null) lastSpawnedPokeBall = value;
+			});
+		}
+	}
+
+	let hidden = true;
 </script>
 
 <nav class="bg-gray-800">
-	<div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+	<div class="px-2 sm:px-6 lg:px-8">
 		<div class="relative flex h-16 items-center justify-between">
 			<div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
 				<!-- Mobile menu button-->
@@ -15,10 +55,10 @@
 				>
 					<span class="sr-only">Open main menu</span>
 					<!--
-            Icon when menu is closed.
-
-            Menu open: "hidden", Menu closed: "block"
-          -->
+			  Icon when menu is closed.
+  
+			  Menu open: "hidden", Menu closed: "block"
+			-->
 					<svg
 						class="block h-6 w-6"
 						fill="none"
@@ -34,10 +74,10 @@
 						/>
 					</svg>
 					<!--
-            Icon when menu is open.
-
-            Menu open: "block", Menu closed: "hidden"
-          -->
+			  Icon when menu is open.
+  
+			  Menu open: "block", Menu closed: "hidden"
+			-->
 					<svg
 						class="hidden h-6 w-6"
 						fill="none"
@@ -122,6 +162,9 @@
 							id="user-menu-button"
 							aria-expanded="false"
 							aria-haspopup="true"
+							on:click={() => {
+								hidden = !hidden;
+							}}
 						>
 							<span class="sr-only">Open user menu</span>
 							<img
@@ -133,17 +176,18 @@
 					</div>
 
 					<!--
-            Dropdown menu, show/hide based on menu state.
-
-            Entering: "transition ease-out duration-100"
-              From: "transform opacity-0 scale-95"
-              To: "transform opacity-100 scale-100"
-            Leaving: "transition ease-in duration-75"
-              From: "transform opacity-100 scale-100"
-              To: "transform opacity-0 scale-95"
-          -->
+			  Dropdown menu, show/hide based on menu state.
+  
+			  Entering: "transition ease-out duration-100"
+				From: "transform opacity-0 scale-95"
+				To: "transform opacity-100 scale-100"
+			  Leaving: "transition ease-in duration-75"
+				From: "transform opacity-100 scale-100"
+				To: "transform opacity-0 scale-95"
+			-->
 					<div
 						class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+						class:hidden
 						role="menu"
 						aria-orientation="vertical"
 						aria-labelledby="user-menu-button"
@@ -206,6 +250,7 @@
 </nav>
 
 <div class="p-4">
+	Next Pokeball In {nextPokeBallIn}
 	<slot />
 </div>
 
