@@ -2,6 +2,7 @@ import type { UpdatePokemonCollection } from '../data_source/pokemon_collection_
 import type { PokemonCollection } from '../entities/pokemon_collection';
 
 export interface IPokemonCollectionRepository {
+	get(uid: string): Promise<PokemonCollection[]>;
 	find(uid: string, basicName: string): Promise<PokemonCollection | undefined>;
 	insert(
 		uid: string,

@@ -13,7 +13,9 @@ import {
 	getDoc,
 	Transaction,
 	setDoc,
-	updateDoc
+	updateDoc,
+	collection,
+	getDocs
 } from 'firebase/firestore';
 import { isNumberModify, numberModifyToFieldValue } from './number_modify';
 
@@ -42,6 +44,19 @@ export class PokemonFirestoreDataSource implements IPokemonCollectionDataSource 
 
 	constructor(@inject(TYPES.Firestore) db: Firestore) {
 		this.db = db;
+	}
+
+	async get(uid: string): Promise<PokemonCollection[]> {
+		const pokemonCollections = collection(this.db, 'users', uid, 'pokemons').withConverter(
+			pokemonCollectionConverter
+		);
+		const querySnapshot = await getDocs(pokemonCollections);
+
+		const data = querySnapshot.docs.map((doc) => {
+			return doc.data();
+		});
+
+		return data;
 	}
 
 	async find(uid: string, basicName: string): Promise<PokemonCollection | undefined> {

@@ -9,6 +9,7 @@ export type UpdatePokemonCollection = {
 };
 
 export interface IPokemonCollectionDataSource {
+	get(uid: string): Promise<PokemonCollection[]>;
 	find(uid: string, basicName: string): Promise<PokemonCollection | undefined>;
 	insert(
 		uid: string,

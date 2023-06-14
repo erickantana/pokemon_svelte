@@ -15,6 +15,10 @@ export class PokemonCollectionRepositoryImpl implements IPokemonCollectionReposi
 		this.dataSource = dataSource;
 	}
 
+	async get(uid: string): Promise<PokemonCollection[]> {
+		return await this.dataSource.get(uid);
+	}
+
 	async find(uid: string, basicName: string): Promise<PokemonCollection | undefined> {
 		return this.dataSource.find(uid, basicName);
 	}
