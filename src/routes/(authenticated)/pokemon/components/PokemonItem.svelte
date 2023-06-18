@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { Pokemon } from '../../../core/entities/pokemon';
+	import type { Pokemon } from '../../../../core/entities/pokemon';
 	import type { IPokemonRepository } from '../data/interface/pokemon_repository';
-	import type { Type } from '../../../core/entities/type';
+	import type { Type } from '../../../../core/entities/type';
 	import { onMount } from 'svelte';
-	import container from '../../../core/container';
-	import TYPES from '../../../core/container/types';
+	import container from '../../../../core/container';
+	import TYPES from '../../../../core/container/types';
 
 	export let pokemon: Pokemon | undefined;
 

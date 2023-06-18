@@ -1,8 +1,8 @@
 import { inject, injectable } from 'inversify';
-import type { Pokemon } from '../../../../core/entities/pokemon';
+import type { Pokemon } from '../../../../../core/entities/pokemon';
 import type { IPokemonDataSource } from '../interface/pokemon_data_source';
 import type { IPokemonRepository } from '../interface/pokemon_repository';
-import TYPES from '../../../../core/container/types';
+import TYPES from '../../../../../core/container/types';
 
 @injectable()
 export class PokemonRepository implements IPokemonRepository {

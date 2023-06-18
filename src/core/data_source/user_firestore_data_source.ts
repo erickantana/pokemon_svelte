@@ -15,7 +15,7 @@ import { inject, injectable } from 'inversify';
 import TYPES from '../container/types';
 import { isNumberModify, numberModifyToFieldValue } from './number_modify';
 
-const userConverter = {
+export const userConverter = {
 	toFirestore: (data: User) => data,
 	fromFirestore: (snap: QueryDocumentSnapshot): User => {
 		const { lastSpawnedPokeBall, pokeballs } = snap.data() as {

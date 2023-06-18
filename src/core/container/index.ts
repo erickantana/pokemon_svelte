@@ -1,10 +1,6 @@
 import { Container, type interfaces } from 'inversify';
 import 'reflect-metadata';
-import type { IPokemonDataSource } from '../../routes/pokemon/data/interface/pokemon_data_source';
 import TYPES from './types';
-import { PokemonGraphQLDataSource } from '../../routes/pokemon/data/impl/pokemon_graphql_data_source';
-import type { IPokemonRepository } from '../../routes/pokemon/data/interface/pokemon_repository';
-import { PokemonRepository } from '../../routes/pokemon/data/impl/pokemon_repository';
 import type { IPokeService } from '../services/poke_service';
 import {
 	PokeServiceImpl,
@@ -32,6 +28,10 @@ import {
 	GeneratePokeBallUseCase,
 	type GeneratePokeBallParam
 } from '../domain/generate_pokeball_use_case';
+import type { IPokemonDataSource } from '../../routes/(authenticated)/pokemon/data/interface/pokemon_data_source';
+import { PokemonGraphQLDataSource } from '../../routes/(authenticated)/pokemon/data/impl/pokemon_graphql_data_source';
+import { PokemonRepository } from '../../routes/(authenticated)/pokemon/data/impl/pokemon_repository';
+import type { IPokemonRepository } from '../../routes/(authenticated)/pokemon/data/interface/pokemon_repository';
 
 const container = new Container();
 

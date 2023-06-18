@@ -1,8 +1,8 @@
-import { Asyncpokemon, Asyncpokemons } from '../../../../graphql/generated';
-import type { Pokemon } from '../../../../core/entities/pokemon';
+import { Asyncpokemon, Asyncpokemons } from '../../../../../graphql/generated';
+import type { Pokemon } from '../../../../../core/entities/pokemon';
 import type { IPokemonDataSource } from '../interface/pokemon_data_source';
 import { injectable } from 'inversify';
-import type { EvolutionChain } from '../../../../core/entities/evolution_chain';
+import type { EvolutionChain } from '../../../../../core/entities/evolution_chain';
 
 @injectable()
 export class PokemonGraphQLDataSource implements IPokemonDataSource {

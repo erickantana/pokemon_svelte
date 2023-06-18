@@ -1,15 +1,16 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { Pokemon } from '../../../core/entities/pokemon';
-	import container from '../../../core/container/index';
-	import TYPES from '../../../core/container/types';
+	import type { Pokemon } from '../../../../core/entities/pokemon';
+	import container from '../../../../core/container/index';
+	import TYPES from '../../../../core/container/types';
 	import type { IPokemonRepository } from '../data/interface/pokemon_repository';
-	import type { EvolutionMap } from '../../../core/entities/evolution_map';
-	import type { EvolutionChain } from '../../../core/entities/evolution_chain';
-	import { PokeBallType } from '../../../core/enums/poke_ball_type';
-	import { auth } from '../../../firebase';
-	import type { UseCase } from '../../../core/domain/use_case';
-	import type { CatchPokemonParam } from '../../../core/domain/catch_pokemon_use_case';
+	import type { EvolutionMap } from '../../../../core/entities/evolution_map';
+	import type { EvolutionChain } from '../../../../core/entities/evolution_chain';
+	import { PokeBallType } from '../../../../core/enums/poke_ball_type';
+	import { auth } from '../../../../firebase';
+	import type { UseCase } from '../../../../core/domain/use_case';
+	import type { CatchPokemonParam } from '../../../../core/domain/catch_pokemon_use_case';
+	import PokeballButton from '../components/PokeballButton.svelte';
 
 	export let data;
 
@@ -78,8 +79,8 @@
 	{/if}
 	<div>{pokemon.height}</div>
 	<div>{pokemon.weight}</div>
-	<button on:click={() => catchPokemon(PokeBallType.PokeBall)}>Catch Pokemon</button>
-	<button on:click={() => catchPokemon(PokeBallType.GreatBall)}>Catch Pokemon</button>
-	<button on:click={() => catchPokemon(PokeBallType.UltraBall)}>Catch Pokemon</button>
-	<button on:click={() => catchPokemon(PokeBallType.MasterBall)}>Catch Pokemon</button>
+	<PokeballButton on:click={() => catchPokemon(PokeBallType.PokeBall)} label="Use PokeBall" />
+	<PokeballButton on:click={() => catchPokemon(PokeBallType.GreatBall)} label="Use GreatBall" />
+	<PokeballButton on:click={() => catchPokemon(PokeBallType.UltraBall)} label="Use UltraBall" />
+	<PokeballButton on:click={() => catchPokemon(PokeBallType.MasterBall)} label="Use MasterBall" />
 {/if}

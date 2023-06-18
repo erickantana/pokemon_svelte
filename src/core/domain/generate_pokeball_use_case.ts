@@ -50,7 +50,7 @@ export class GeneratePokeBallUseCase implements UseCase<GeneratePokeBallParam, D
 				const maxPokeballToHold = 20;
 				const maxSpawnedCount = maxPokeballToHold - currentBallCount;
 
-				if (lastSpawnedPokeBall.getTime() < now.getTime()) {
+				if (lastSpawnedPokeBall.getTime() < now.getTime() && maxSpawnedCount > 0) {
 					const { stepCount, maxThresholdDate } = this.timeService.getTimeStep(
 						lastSpawnedPokeBall,
 						now,
@@ -97,6 +97,7 @@ export class GeneratePokeBallUseCase implements UseCase<GeneratePokeBallParam, D
 					);
 					return maxThresholdDate;
 				}
+				return lastSpawnedPokeBall;
 			} else {
 				// New User
 				const lastSpawnedPokeBall = new Date();
@@ -119,8 +120,6 @@ export class GeneratePokeBallUseCase implements UseCase<GeneratePokeBallParam, D
 				);
 				return lastSpawnedPokeBall;
 			}
-
-			return null;
 		});
 	}
 }

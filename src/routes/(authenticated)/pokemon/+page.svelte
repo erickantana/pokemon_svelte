@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import PokemonItem from './components/PokemonItem.svelte';
-	import type { Pokemon } from '../../core/entities/pokemon';
-	import container from '../../core/container';
+	import type { Pokemon } from '../../../core/entities/pokemon';
+	import container from '../../../core/container';
 	import type { IPokemonRepository } from './data/interface/pokemon_repository';
-	import TYPES from '../../core/container/types';
+	import TYPES from '../../../core/container/types';
 	import { onMount } from 'svelte';
 
 	const repository = container.get<IPokemonRepository>(TYPES.PokemonRepository);
